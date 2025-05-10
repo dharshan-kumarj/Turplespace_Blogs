@@ -1,20 +1,24 @@
-import { Heart } from "lucide-react";
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useTheme } from '../complex/ThemeContext';
 
-const Footer = () => {
+const Footer: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   return (
-    <footer className="border-t py-6 md:py-8">
-      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div className="text-center md:text-left text-sm">
-          <p className="text-muted-foreground">
-            © {new Date().getFullYear()} TurpleSpace Blog. All rights reserved.
-          </p>
-        </div>
-        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-          <span>Made with</span>
-          <Heart className="h-4 w-4 fill-primary text-primary" />
-          <span>by dharshan-kumar</span>
-        </div>
-      </div>
+    <footer className={`py-4 mt-auto border-top ${isDarkMode ? 'bg-dark text-light' : 'bg-light'}`}>
+      <Container>
+        <Row>
+          <Col md={6} className="text-center text-md-start">
+            <p className="mb-0">© {new Date().getFullYear()} TurpleSpace Blog. All rights reserved.</p>
+          </Col>
+          <Col md={6} className="text-center text-md-end">
+            <p className="mb-0">
+              Made with <i className="bi bi-heart-fill text-danger"></i> by dharshan-kumar
+            </p>
+          </Col>
+        </Row>
+      </Container>
     </footer>
   );
 };

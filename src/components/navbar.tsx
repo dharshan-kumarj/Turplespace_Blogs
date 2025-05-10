@@ -1,47 +1,63 @@
-import { Link } from "react-router-dom";
-import { ThemeToggle } from "./theme/theme-toggle";
-import { Button } from "./ui/button";
-import { Home, Book, Github } from "lucide-react";
+import React from 'react';
+import { Navbar as BsNavbar, Container, Nav, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../complex/ThemeContext';
 
-const NavBar = () => {
+const Navbar: React.FC = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+  
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6 md:gap-10">
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl bg-gradient-to-r from-violet-600 to-purple-500 bg-clip-text text-transparent">
-              TurpleSpace
-            </span>
-          </Link>
-          <nav className="hidden md:flex gap-6">
-            <Link 
-              to="/" 
-              className="flex items-center text-sm font-medium transition-colors hover:text-primary"
+    <BsNavbar 
+      bg={isDarkMode ? 'dark' : 'light'} 
+      variant={isDarkMode ? 'dark' : 'light'} 
+      expand="lg"
+      className="mb-4"
+    >
+      <Container>
+        <BsNavbar.Brand as={Link} to="/" style={{ color: '#aa14f0' }}>
+          TurpleSpace
+        </BsNavbar.Brand>
+        
+        <BsNavbar.Toggle aria-controls="navbar-nav" />
+        
+        <BsNavbar.Collapse id="navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">
+              <i className="bi bi-house-door me-1"></i> Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/blog">
+              <i className="bi bi-journal-text me-1"></i> Blog
+            </Nav.Link>
+          </Nav>
+          
+          <div className="d-flex">
+            <Button 
+              variant={isDarkMode ? 'outline-light' : 'outline-dark'}
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="me-2"
             >
-              <Home className="h-4 w-4 mr-1" />
-              Home
-            </Link>
-            <Link 
-              to="/blog" 
-              className="flex items-center text-sm font-medium transition-colors hover:text-primary"
+              {isDarkMode ? (
+                <i className="bi bi-sun"></i>
+              ) : (
+                <i className="bi bi-moon"></i>
+              )}
+            </Button>
+            
+            <Button 
+              variant={isDarkMode ? 'outline-light' : 'outline-dark'}
+              as="a"
+              href="https://github.com/dharshan-kumar"
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-              <Book className="h-4 w-4 mr-1" />
-              Blog
-            </Link>
-          </nav>
-        </div>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/dharshan-kumar" target="_blank" rel="noopener noreferrer">
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </a>
-          </Button>
-        </div>
-      </div>
-    </header>
+              <i className="bi bi-github"></i>
+            </Button>
+          </div>
+        </BsNavbar.Collapse>
+      </Container>
+    </BsNavbar>
   );
 };
 
-export default NavBar;
+export default Navbar;

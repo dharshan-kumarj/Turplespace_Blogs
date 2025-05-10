@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { cn } from "../lib/utils";
-import { Copy, CheckCircle } from "lucide-react";
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 interface CodeSectionProps {
   language: string;
   children: string;
 }
 
-const CodeSection = ({ language, children }: CodeSectionProps) => {
+const CodeSection: React.FC<CodeSectionProps> = ({ language, children }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyCode = () => {
@@ -24,30 +22,27 @@ const CodeSection = ({ language, children }: CodeSectionProps) => {
     .join("    ");
 
   return (
-    <div className="rounded-lg overflow-hidden border border-border my-4">
-      <div className="bg-muted px-4 py-2 flex justify-between items-center">
-        <span className="text-sm font-mono text-muted-foreground">{language}</span>
+    <div className="code-section">
+      <div className="code-header">
+        <div>{language}</div>
         <Button 
+          variant="outline-light" 
           size="sm" 
-          variant="ghost" 
           onClick={handleCopyCode}
-          className="flex items-center space-x-1"
         >
           {copied ? (
             <>
-              <CheckCircle className="h-4 w-4" />
-              <span>Copied</span>
+              <i className="bi bi-check-circle me-1"></i> Copied
             </>
           ) : (
             <>
-              <Copy className="h-4 w-4" />
-              <span>Copy</span>
+              <i className="bi bi-clipboard me-1"></i> Copy
             </>
           )}
         </Button>
       </div>
-      <div className="bg-card p-4 overflow-x-auto">
-        <pre className="font-mono text-sm whitespace-pre">{formattedCode}</pre>
+      <div className="code-content">
+        <pre>{formattedCode}</pre>
       </div>
     </div>
   );

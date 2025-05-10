@@ -1,124 +1,134 @@
-import NavBar from "../components/navbar";
-import Footer from "../components/footer";
-import { Button } from "../components/ui/button";
-import { BookOpen, ArrowRight, Github } from "lucide-react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
+import { useTheme } from '../complex/ThemeContext';
 
-const Home = () => {
+const Home: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavBar />
-      <main className="flex-1">
-        <section className="py-12 md:py-24">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-gradient-to-r from-violet-600 to-purple-500 bg-clip-text text-transparent">
-                    Welcome to TurpleSpace
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Exploring the intersection of technology, creativity, and innovation. Join me on this journey to learn and grow together.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+    <>
+      <Navbar />
+      <main className="flex-grow-1">
+        <section className="py-5">
+          <Container>
+            <Row className="align-items-center">
+              <Col lg={6} className="mb-5 mb-lg-0">
+                <h1 className="display-5 fw-bold gradient-text mb-4">Welcome to TurpleSpace</h1>
+                <p className="lead mb-4">
+                  Exploring the intersection of technology, creativity, and innovation. 
+                  Join me on this journey to learn and grow together.
+                </p>
+                <div className="d-grid gap-2 d-md-flex">
                   <Link to="/blog">
-                    <Button className="gap-1">
-                      <BookOpen className="h-4 w-4" />
-                      Explore the Blog
-                      <ArrowRight className="h-4 w-4" />
+                    <Button variant="primary" size="lg" className="px-4 me-md-2">
+                      <i className="bi bi-journal-text me-2"></i>Explore the Blog
                     </Button>
                   </Link>
-                  <a href="https://github.com/dharshan-kumar" target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" className="gap-1">
-                      <Github className="h-4 w-4" />
-                      GitHub Profile
+                  <a 
+                    href="https://github.com/dharshan-kumar" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline-secondary" size="lg" className="px-4">
+                      <i className="bi bi-github me-2"></i>GitHub Profile
                     </Button>
                   </a>
                 </div>
-              </div>
-              <div className="mx-auto lg:mx-0 p-4 lg:p-8">
-                <div className="rounded-lg bg-gradient-to-br from-violet-600 to-purple-500 p-1">
-                  <div className="rounded-md bg-background p-8">
-                    <svg
-                      className="h-24 w-24 md:h-32 md:w-32 text-violet-500 mx-auto"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-                      <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-                      <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
-                    </svg>
+              </Col>
+              <Col lg={6}>
+                <div className="p-5" style={{ 
+                  borderRadius: '1rem',
+                  background: 'linear-gradient(135deg, rgba(170, 20, 240, 0.2) 0%, rgba(200, 85, 255, 0.2) 100%)'
+                }}>
+                  <div className={`p-4 text-center ${isDarkMode ? 'bg-dark' : 'bg-light'}`} style={{ borderRadius: '0.75rem' }}>
+                    <i className="bi bi-braces-asterisk" style={{ fontSize: '8rem', color: '#aa14f0' }}></i>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </Col>
+            </Row>
+          </Container>
         </section>
         
-        <section className="bg-muted/40 py-12 md:py-16">
-          <div className="container px-4 md:px-6">
-            <div className="mx-auto text-center md:max-w-[58rem]">
-              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">Featured Blog Posts</h2>
-              <p className="mt-4 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Check out some of my latest articles and tutorials
-              </p>
+        <section className={`py-5 ${isDarkMode ? 'bg-dark' : 'bg-light'}`}>
+          <Container>
+            <div className="text-center mb-5">
+              <h2 className="fw-bold">Featured Blog Posts</h2>
+              <p className="lead">Check out some of my latest articles and tutorials</p>
             </div>
             
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <Link to="/blog/docker" className="group">
-                <div className="rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md">
-                  <div className="mb-4 flex items-center gap-4">
-                    <img
-                      src="/images/blog/dockericon.svg"
-                      alt="Docker"
-                      className="h-12 w-12 transition-transform group-hover:scale-110"
-                    />
-                    <h3 className="text-xl font-bold">Docker Containerization</h3>
-                  </div>
-                  <p className="line-clamp-2 text-muted-foreground">
-                    Learn how Docker allows you to package your application and all its dependencies into a standardized unit called a container.
-                  </p>
-                </div>
-              </Link>
+            <Row className="g-4">
+              <Col md={6}>
+                <Link to="/blog/docker" className="text-decoration-none">
+                  <Card className={`h-100 zoom ${isDarkMode ? 'bg-dark text-light border-secondary' : ''}`}>
+                    <Card.Body>
+                      <div className="d-flex align-items-center mb-3">
+                        <img 
+                          src="/images/blog/dockericon.svg" 
+                          alt="Docker" 
+                          className="me-3" 
+                          style={{ width: '48px', height: '48px' }}
+                        />
+                        <h3 className="card-title mb-0">Docker Containerization</h3>
+                      </div>
+                      <Card.Text>
+                        Learn how Docker allows you to package your application and all its 
+                        dependencies into a standardized unit called a container.
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="bg-transparent border-top-0">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span className="btn btn-sm btn-outline-primary">Read more</span>
+                        <small className="text-muted">9 mins read</small>
+                      </div>
+                    </Card.Footer>
+                  </Card>
+                </Link>
+              </Col>
               
-              <Link to="/blog/agi" className="group">
-                <div className="rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md">
-                  <div className="mb-4 flex items-center gap-4">
-                    <img
-                      src="/images/blog/agi.svg"
-                      alt="AGI"
-                      className="h-12 w-12 transition-transform group-hover:scale-110"
-                    />
-                    <h3 className="text-xl font-bold">Artificial General Intelligence</h3>
-                  </div>
-                  <p className="line-clamp-2 text-muted-foreground">
-                    Explore how AGI aims to emulate human-like intelligence and adaptability across a broad range of tasks.
-                  </p>
-                </div>
-              </Link>
-            </div>
+              <Col md={6}>
+                <Link to="/blog/agi" className="text-decoration-none">
+                  <Card className={`h-100 zoom ${isDarkMode ? 'bg-dark text-light border-secondary' : ''}`}>
+                    <Card.Body>
+                      <div className="d-flex align-items-center mb-3">
+                        <img 
+                          src="/images/blog/agi.svg" 
+                          alt="AGI" 
+                          className="me-3" 
+                          style={{ width: '48px', height: '48px' }}
+                        />
+                        <h3 className="card-title mb-0">Artificial General Intelligence</h3>
+                      </div>
+                      <Card.Text>
+                        Explore how AGI aims to emulate human-like intelligence and 
+                        adaptability across a broad range of tasks.
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="bg-transparent border-top-0">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span className="btn btn-sm btn-outline-primary">Read more</span>
+                        <small className="text-muted">9 mins read</small>
+                      </div>
+                    </Card.Footer>
+                  </Card>
+                </Link>
+              </Col>
+            </Row>
             
-            <div className="flex justify-center">
+            <div className="text-center mt-5">
               <Link to="/blog">
-                <Button variant="outline" className="gap-1">
-                  View All Posts
-                  <ArrowRight className="h-4 w-4" />
+                <Button variant="outline-primary">
+                  View All Posts <i className="bi bi-arrow-right ms-2"></i>
                 </Button>
               </Link>
             </div>
-          </div>
+          </Container>
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
