@@ -1,24 +1,23 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './complex/ThemeContext';
-import HomePage from './pages/Home';
-import BlogPage from './pages/Blog';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './components/themes/theme-provider';
+import Blog from './pages/Blog';
 import DockerPage from './pages/Blogs/Docker';
 import AGIPage from './pages/Blogs/AGI';
+import HomePage from './pages/Home';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <ThemeProvider>
-      <div className="d-flex flex-column min-vh-100">
+    <ThemeProvider defaultTheme="dark">
+      <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/blog/docker" element={<DockerPage />} />
           <Route path="/blog/agi" element={<AGIPage />} />
         </Routes>
-      </div>
+      </Router>
     </ThemeProvider>
   );
-};
+}
 
 export default App;
