@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-import { useTheme } from '../complex/ThemeContext';
 
 interface BlogPost {
   id: string;
@@ -14,8 +13,6 @@ interface BlogPost {
 }
 
 const Blog: React.FC = () => {
-  const { isDarkMode } = useTheme();
-  
   const blogPosts: BlogPost[] = [
     {
       id: "docker",
@@ -53,7 +50,7 @@ const Blog: React.FC = () => {
             <Row xs={1} md={2} lg={3} className="g-4">
               {blogPosts.map((post) => (
                 <Col key={post.id}>
-                  <Card className={`h-100 zoom ${isDarkMode ? 'bg-dark text-light border-secondary' : ''}`}>
+                  <Card className="h-100 zoom bg-dark text-light border-secondary">
                     <Link to={`/blog/${post.id}`}>
                       <Card.Img 
                         variant="top" 

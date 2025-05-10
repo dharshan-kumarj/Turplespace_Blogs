@@ -1,15 +1,12 @@
 import React from 'react';
 import { Navbar as BsNavbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../complex/ThemeContext';
 
 const Navbar: React.FC = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
-  
   return (
     <BsNavbar 
-      bg={isDarkMode ? 'dark' : 'light'} 
-      variant={isDarkMode ? 'dark' : 'light'} 
+      bg="dark" 
+      variant="dark" 
       expand="lg"
       className="mb-4"
     >
@@ -32,22 +29,9 @@ const Navbar: React.FC = () => {
           
           <div className="d-flex">
             <Button 
-              variant={isDarkMode ? 'outline-light' : 'outline-dark'}
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="me-2"
-            >
-              {isDarkMode ? (
-                <i className="bi bi-sun"></i>
-              ) : (
-                <i className="bi bi-moon"></i>
-              )}
-            </Button>
-            
-            <Button 
-              variant={isDarkMode ? 'outline-light' : 'outline-dark'}
+              variant="outline-light"
               as="a"
-              href="https://github.com/dharshan-kumar"
+              href="https://github.com/turplespace"
               target="_blank" 
               rel="noopener noreferrer"
             >

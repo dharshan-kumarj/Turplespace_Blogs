@@ -1,12 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useTheme } from '../complex/ThemeContext';
 
 const Footer: React.FC = () => {
-  const { isDarkMode } = useTheme();
-  
   return (
-    <footer className={`py-4 mt-auto border-top ${isDarkMode ? 'bg-dark text-light' : 'bg-light'}`}>
+    <footer className="py-4 mt-auto border-top bg-dark text-light">
       <Container>
         <Row>
           <Col md={6} className="text-center text-md-start">

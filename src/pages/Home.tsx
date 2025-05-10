@@ -28,7 +28,7 @@ const Home: React.FC = () => {
                     </Button>
                   </Link>
                   <a 
-                    href="https://github.com/dharshan-kumar" 
+                    href="https://github.com/turplespace" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
