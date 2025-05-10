@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           </Col>
           <Col md={6} className="text-center text-md-end">
             <p className="mb-0">
-              Made with <i className="bi bi-heart-fill text-danger"></i> by dharshan-kumar
+              Made with <i className="bi bi-heart-fill text-danger"></i> by TurpleSpace
             </p>
           </Col>
         </Row>
