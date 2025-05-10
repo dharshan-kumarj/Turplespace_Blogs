@@ -55,8 +55,8 @@ const Home: React.FC = () => {
         <section className={`py-5 ${isDarkMode ? 'bg-dark' : 'bg-light'}`}>
           <Container>
             <div className="text-center mb-5">
-              <h2 className="fw-bold">Featured Blog Posts</h2>
-              <p className="lead">Check out some of my latest articles and tutorials</p>
+              <h2 className="text-white">Featured Blog Posts</h2>
+              <p className="lead text-white">Check out some of my latest articles and tutorials</p>
             </div>
             
             <Row className="g-4">
